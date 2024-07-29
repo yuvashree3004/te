@@ -1,0 +1,25 @@
+document.getElementById('rideForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const pickupLocation = document.getElementById('pickup').value;
+    const dropLocation = document.getElementById('drop').value;
+    const pickupTime = document.getElementById('time').value;
+    const vehicleType = document.getElementById('vehicle').value;
+    const paymentMethod = document.getElementById('payment').value;
+    
+    if (pickupLocation && dropLocation && pickupTime && vehicleType && paymentMethod) {
+        const summary = `
+            <h2>Ride Summary</h2>
+            <p><strong>Pickup Location:</strong> ${pickupLocation}</p>
+            <p><strong>Drop Location:</strong> ${dropLocation}</p>
+            <p><strong>Pickup Time:</strong> ${pickupTime}</p>
+            <p><strong>Vehicle Type:</strong> ${vehicleType.charAt(0).toUpperCase() + vehicleType.slice(1)}</p>
+            <p><strong>Payment Method:</strong> ${paymentMethod.charAt(0).toUpperCase() + paymentMethod.slice(1)}</p>
+        `;
+        document.getElementById('rideSummary').innerHTML = summary;
+        document.getElementById('alert').style.display = 'none';
+    } else {
+        document.getElementById('alert').innerText = 'Please fill out all fields.';
+        document.getElementById('alert').style.display = 'block';
+    }
+});
